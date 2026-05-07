@@ -40,16 +40,16 @@ export default function Dashboard() {
       `}>
         <div className="flex justify-between items-center mb-10">
           <h2 className="text-xl md:text-2xl font-bold">VitalSync</h2>
-          <button onClick={toggleSidebar} className="md:hidden text-gray-400">✕</button>
+          <button onClick={toggleSidebar} aria-label="Close navigation menu"className="md:hidden text-white opacity-80">✕</button>
           </div>
           <nav className="space-y-4">
-            <p className="hover:text-blue-300 cursor-pointer font-bold text-blue-400 text-sm md:text-base">Dashboard</p>
-            {/* <p className="hover:text-blue-300 cursor-pointer">Appointments</p>
-            {userData?.role === "doctor" && (
-              <p className="hover:text-blue-300 cursor-pointer flex items-center gap-2">
-                Patients List
-              </p>
-            )} */}
+            <ul className="space-y-4">
+              <li>
+                  <button className="hover:text-blue-300 cursor-pointer font-bold text-blue-400 text-sm md:text-base">
+                    Dashboard
+                  </button>
+              </li>
+            </ul>
           </nav>
       </aside>
       {isSidebarOpen && (
@@ -66,7 +66,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             {/* 4. THE HAMBURGER BUTTON */}
             <button 
-              onClick={toggleSidebar} 
+              onClick={toggleSidebar} aria-label="Open navigation menu"
               className="p-2 text-gray-600 md:hidden"
             >
               ☰
@@ -78,14 +78,14 @@ export default function Dashboard() {
             <span className="hidden sm:inline text-gray-600">
                Welcome, {userData?.firstName || "User"} ({userData?.role})
             </span>
-            <button onClick={handleLogout} disabled={isLoggingOut} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">
+            <button onClick={handleLogout} aria-label="Logout" disabled={isLoggingOut} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm">
               {isLoggingOut ? 'Logging out...' : 'Logout'}
             </button>
           </div>
         </header>
 
         {/* --- THE MAGIC PART (Dynamic Content) --- */}
-        <main className="p-4 md:p-8 flex-1 w-full">
+        <main className="p-4 md:p-8 flex-1 w-full" role="main">
           {/* If role is doctor, show the Doctor's Desk (Form + Table) */}
           <div className="w-full max-w-full">
           {userData?.role === "doctor" ? (
